@@ -12,12 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.Assert.*;
 
 import java.io.IOException;
 
 public abstract class AbstractBaseTest {
 
-    protected WebDriver driver = Driver.getDriver();
+    protected WebDriver driver;
 
     protected static ExtentReports extentReports;
     protected static ExtentHtmlReporter extentHtmlReporter;
@@ -45,6 +46,7 @@ extentReports.flush();
 
     @BeforeMethod
     public void setup() {
+        driver = Driver.getDriver();
         driver.get(ConfigurationReader.getProperty("url"));
         driver.manage().window().maximize();
     }
